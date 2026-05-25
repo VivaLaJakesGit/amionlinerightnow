@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Status</title>
+    <style>
+        /* Center the text on the screen */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 8rem;
+            font-weight: bold;
+            background-color: #f4f4f9;
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="statusDisplay">...</div>
+
+    <script>
+        // Function to check and display the current network status
+        function checkNetworkStatus() {
+            const display = document.getElementById('statusDisplay');
+            
+            if (navigator.onLine) {
+                display.textContent = "Yes";
+                display.style.color = "#2e7d32"; // Green for connected
+            } else {
+                display.textContent = "No";
+                display.style.color = "#d32f2f"; // Red for disconnected
+            }
+        }
+
+        // 1. Check status immediately when the page loads or reloads
+        window.addEventListener('load', checkNetworkStatus);
+
+        // 2. Automatically update if the connection changes while the page is open
+        window.addEventListener('online', checkNetworkStatus);
+        window.addEventListener('offline', checkNetworkStatus);
+    </script>
+
+</body>
+</html>
